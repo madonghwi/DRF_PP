@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    <title>회원가입</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+</head>
+<body>
+<form method="POST" id="signup-form">
+    {% csrf_token %}
+    <label for="name">이름</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="password">비밀번호</label>
+    <input type="password" id="password" name="password" required>
+
+    <label for="password-confirm">비밀번호 확인:</label>
+    <input type="password" id="password-confirm" name="password-confirm" minlength="8" required>
+
+    <label for="age">나이</label>
+    <input type="number" id="age" name="age" required>
+
+    <label for="introduction">자기소개</label>
+    <input type="text" id="introduction" name="introduction" required>
+
+    <label for="gender">성별</label>
+    <select id="gender" name="gender" required>
+        <option value="">--선택해 주세요--</option>
+        <option value="male">남자</option>
+        <option value="female">여자</option>
+        <option value="other">기타</option>
+    </select>
+    <button type="submit">가입하기</button>
+</form>
+<script>
+  const form = document.getElementById('signup-form');
+  const password = document.getElementById('password');
+  const passwordConfirm = document.getElementById('password-confirm');
+
+  form.addEventListener('submit', function(event) {
+    if (password.value !== passwordConfirm.value) {
+      event.preventDefault();
+      alert('비밀번호가 일치하지 않습니다.');
+    }
+  });
+</script>
+</body>
+{% endblock %}

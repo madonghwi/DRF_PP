@@ -1,0 +1,21 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ title }}</h1>
+  <p>{{ description }}</p>
+  {% if posts %}
+    {% for post in posts %}
+      <div class="post">
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.content }}</p>
+        <div class="post-meta">
+          <span class="date">{{ post.date_posted }}</span>
+          <span class="author">{{ post.author }}</span>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No posts yet.</p>
+  {% endif %}
+{% endblock %}
